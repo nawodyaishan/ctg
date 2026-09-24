@@ -3,6 +3,7 @@ VERSION     := 0.1.0
 DIST        := dist
 BUILDROOT   := $(DIST)/root
 BIN_DIR     := $(BUILDROOT)/Library/Application Support/ColdTurkeyGuardian/bin
+REF_DIR     := $(BUILDROOT)/Library/Application Support/ColdTurkeyGuardian/ref
 CLI_DIR     := $(BUILDROOT)/usr/local/bin
 DAEMON_DIR  := $(BUILDROOT)/Library/LaunchDaemons
 
@@ -32,11 +33,13 @@ fmt:
 pkg-unsigned: export COPYFILE_DISABLE=1
 pkg-unsigned: build
 	rm -rf $(BUILDROOT)
-	mkdir -p "$(BIN_DIR)" "$(CLI_DIR)" "$(DAEMON_DIR)"
+	mkdir -p "$(BIN_DIR)" "$(REF_DIR)" "$(CLI_DIR)" "$(DAEMON_DIR)"
 	cp $(DIST)/guardiand "$(BIN_DIR)/guardiand"
 	cp $(DIST)/guardian "$(CLI_DIR)/guardian"
 	cp packaging/com.coldturkeyguardian.primary.plist "$(DAEMON_DIR)/"
 	cp packaging/com.coldturkeyguardian.twin.plist "$(DAEMON_DIR)/"
+	cp packaging/com.coldturkeyguardian.primary.plist "$(REF_DIR)/"
+	cp packaging/com.coldturkeyguardian.twin.plist "$(REF_DIR)/"
 	pkgbuild \
 		--root "$(BUILDROOT)" \
 		--scripts packaging/scripts \

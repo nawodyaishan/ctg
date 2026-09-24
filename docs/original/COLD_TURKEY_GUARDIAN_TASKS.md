@@ -53,7 +53,7 @@ Each task lists: **objective · allowed paths · acceptance · verification · d
 - **Allowed:** `cmd/guardiand` (stub), `packaging/*.plist`.
 - **Acceptance:** killing either daemon → launchd respawns it; deleting either plist → the peer restores + bootstraps it.
 - **Verification:** scripted `pkill`/`rm`; observe both back within target window.
-- **Deps:** T03. **Risk:** M. **Approval:** none. **Status:** TODO.
+- **Deps:** T03. **Risk:** M. **Approval:** none. **Status:** CODE COMPLETE, VM VERIFICATION PENDING (`cmd/guardiand` polls for the peer plist and restores+bootstraps it from a packaged reference copy at `.../ColdTurkeyGuardian/ref/`; unit-tested via `cmd/guardiand/main_test.go` with paths redirected to a temp dir — real `launchctl bootstrap`/`KeepAlive` respawn behavior needs the disposable VM per this doc's prerequisites, not the dev host).
 
 ### T05 — Red-team burst harness + BTM test  ★ decision gate
 - **Objective:** script the four bypass commands and escalation bursts (`chflags noschg` → `bootout` both → `rm` both) at increasing speed; separately test disabling the daemon via **System Settings ▸ Login Items ▸ Allow in the Background** and via clearing the BTM "Allowed" bit.
