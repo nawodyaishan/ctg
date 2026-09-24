@@ -1,0 +1,15 @@
+# Build artifacts
+/dist/
+*.pkg
+
+# Go
+*.test
+*.out
+coverage.*
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
