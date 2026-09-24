@@ -1,0 +1,13 @@
+#!/bin/sh
+# Cold Turkey Guardian — postinstall (dev/unsigned path, T03).
+# Bootstraps both twin LaunchDaemons. schg / discovery / doctor verification
+# are added in T10, T11, T22 — this is the minimal dev-loop install.
+set -e
+
+for label in primary twin; do
+	plist="/Library/LaunchDaemons/com.coldturkeyguardian.${label}.plist"
+	launchctl bootout "system/com.coldturkeyguardian.${label}" >/dev/null 2>&1 || true
+	launchctl bootstrap system "$plist"
+done
+
+exit 0

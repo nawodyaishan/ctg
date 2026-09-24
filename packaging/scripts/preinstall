@@ -1,0 +1,9 @@
+#!/bin/sh
+# Cold Turkey Guardian — preinstall (dev/unsigned path, T03).
+# Production discovery/verification (FR1) lands in T06/T22; this stub only
+# ensures the target directories exist before the payload is laid down.
+set -e
+
+mkdir -p "/Library/Application Support/ColdTurkeyGuardian/bin"
+
+exit 0
